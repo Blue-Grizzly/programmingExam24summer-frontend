@@ -184,7 +184,6 @@ button:hover {
   height: 25px;
 }
 .form-btn {
-  /* background-color: #080808; */
   background-color: darkslategrey;
   color: white;
   padding: 5px 15px;
@@ -193,3 +192,81 @@ button:hover {
   border-radius: 3px;
   cursor: pointer;
 }
+
+
+.toolbar {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+  gap: 10px;
+  padding: 10px;
+  background-color: var(--tertiary);
+  color: var(--dark-font-color);
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+
+.toolbar input {
+  padding: 8px;
+  font-size: 16px;
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+  color: var(--quarternary);
+}
+
+.toolbar label {
+  font-size: 14px;
+  margin-right: 8px;
+  align-self: center;
+}
+
+.toolbar select, .toolbar input{
+  padding: 8px;
+  font-size: 16px;
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+  background-color: var(--primary);
+}
+
+.toolbar select {
+  height: 40px;
+  width: 100%;
+}
+
+@media (max-width: 768px) {
+  .toolbar {
+      flex-direction: column;
+      align-items: flex-start;
+  }
+
+  .toolbar label {
+      margin-top: 10px;
+  }
+
+  .toolbar input, .toolbar select {
+      width: 100%;
+  }
+}
+
+
+  .btn-delete {
+    background-color: red;
+    color: white;
+    padding: 20px 25px;
+    margin:30px;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+  }
+
+  .btn-cancel {
+    background-color: darkslategrey;
+    color: white;
+    padding: 20px 25px;
+    margin:30px;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+  }
+
+  

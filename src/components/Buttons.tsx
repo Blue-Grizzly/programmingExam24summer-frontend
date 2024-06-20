@@ -5,6 +5,9 @@ export default function Buttons({ onSelected }: { onSelected: (selected: string)
             <button className="btn-w100" onClick={() => onSelected("welcome")}>
                 Home
             </button>
+            <button className="btn-w100" onClick={() => onSelected("login")}>
+                {localStorage.getItem("token") ? "Logout" : "Login"}
+            </button>
             <button className="btn-w100" onClick={() => onSelected("athletes")}>
                 Athletes
             </button>

@@ -1,5 +1,27 @@
+:root{
+  --primary: #222831;
+  --secondary: #393e46;
+  --tertiary: #0092ca;
+  --quarternary: #eeeeee;
+  --dark-font-color: rgb(12, 12, 12); 
+  --light-font-color: rgb(189, 189, 189);
+
+    font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+    line-height: 1.5;
+    font-weight: 400;
+  
+    color-scheme: light dark;
+    color: var(--quarternary);
+    background-color: var(--primary);
+  
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
 .login-wrapper {
-  background-color: white;
+  background-color: var(--secondary);
   padding: 20px;
   margin-top: 50px;  
   width: 350px;

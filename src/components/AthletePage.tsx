@@ -7,9 +7,12 @@ type AthletePageProps = {
     calcAge: (birthDate: string) => number;
     calcAgeGroup: (birthDate: string) => string;
     setSelectedView: (selected: string) => void;
+    handleUpdate: (entity: Object, type:string) => void;
+    handleDelete: (entity: any, entityType:string) => void;
+
 }
 
-export default function AthletePage({athlete, calcAge, calcAgeGroup, setSelectedView}: AthletePageProps){
+export default function AthletePage({athlete, calcAge, calcAgeGroup, setSelectedView, handleDelete, handleUpdate}: AthletePageProps){
     const [resultsLocal, setResultsLocal] = useState([]);
 
     const getResults = async () => {
@@ -50,8 +53,11 @@ export default function AthletePage({athlete, calcAge, calcAgeGroup, setSelected
                     </tbody>
                 </table>
             }
-                
-          <button onClick={()=>setSelectedView("athletes")}>Back to athletes</button>
+            <div>
+                <button onClick={()=> handleUpdate(athlete, "athletes")}>Update</button>
+                <button onClick={()=> handleDelete(athlete, "athletes")}>Delete</button>
+                <button onClick={()=> setSelectedView("athletes")}>Back to athletes</button>
+            </div>    
         </div>
     )
 }

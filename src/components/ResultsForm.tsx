@@ -181,8 +181,8 @@ export default function ResultsForm({result, setSelectedView, setEntityToUpdate}
                         <tbody>
                             {populateForm()}
                             <tr>
-                                <td > <button onClick={expandForm} style={{marginTop:"20px"}} className="form-btn">Add Row </button></td>
-                                <td> <button type="submit" style={{marginTop:"20px"}} className="form-btn">Submit</button></td>
+                                <td > <button onClick={expandForm} style={{marginTop:"20px", padding:"10px"}}>Add Row </button></td>
+                                <td> <button type="submit" style={{marginTop:"20px", padding:"15px"}} className="form-btn">Submit</button></td>
                             </tr>
                         </tbody>
                        

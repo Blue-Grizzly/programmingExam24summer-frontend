@@ -54,10 +54,16 @@ export default function AthleteForm({athlete, setEntityToUpdate, setSelectedView
         setDisciplines( await RestService.getAll("disciplines"));
     }
 
+
     useEffect(() => {
-        fetchDisciplines();        
+        fetchDisciplines();
+        setTimeout(() => {
+          athlete.disciplines.forEach((discipline) => { document.getElementById(discipline.name).checked = formData.disciplines.includes(discipline)})
+        }, 100);      // please dont look at my shame
     }, []);
   
+
+
     return (
       <>
         <h2>Create or update Athlete</h2>
@@ -86,7 +92,7 @@ export default function AthleteForm({athlete, setEntityToUpdate, setSelectedView
           <div className="form-group">
           <label htmlFor="discipline">Discipline:</label>
           {disciplines.map((discipline:discipline) => (
-            <label key={discipline.id}>{discipline.name}<input type="checkbox" onChange={()=>handleCheckBox(discipline)}></input></label>
+            <label key={discipline.id} >{discipline.name}<input id={discipline.name} type="checkbox" onChange={()=>handleCheckBox(discipline)}></input></label>
             ))}
           </div>
           <button type="submit" className="form-btn">Add/Update Athlete</button>

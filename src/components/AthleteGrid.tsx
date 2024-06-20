@@ -31,7 +31,7 @@ export default function AthleteGrid({handleUpdate, handleDelete, calcAgeGroup, h
         setFilteredAthletes(filtered);
     }
 
-    const clubs = athletesLocal.map((athlete) => athlete.club);
+    const clubs = [... new Set(athletesLocal.map((athlete) => athlete.club))];
 
     useEffect(() => {
         fetchAthletes();

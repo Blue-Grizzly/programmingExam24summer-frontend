@@ -1,19 +1,17 @@
 import { useState } from "react";
 import { User } from "../services/authFacade";
 import "./login.css";
-import { useLocation, useNavigate } from "react-router-dom";
 import { useAuth } from "./AuthProvider";
 
-const Login = () => {
-  const [user, setUser] = useState({ username: "", password: "" });
+type LoginProps = {
+  setSelectedView: (selected: string) => void;
+};
 
-  const navigate = useNavigate();
-  const location = useLocation();
+const Login = ({setSelectedView}:LoginProps) => {
+  const [user, setUser] = useState({ username: "", password: "" });
   const auth = useAuth();
 
   const [err, setErr] = useState(null);
-
-  const from = location.state?.from?.pathname || "/";
 
   function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -22,13 +20,11 @@ const Login = () => {
     const user = Object.fromEntries(formData) as unknown as User;
 
     setErr(null);
-    console.log(err);
-    alert("Login: " + JSON.stringify(user));
     return (
     auth
       .signIn(user)
       .then(() => {
-        navigate(from, { replace: true });
+        setSelectedView("welcome");
       })
       .catch((err) => {
         setErr(err);

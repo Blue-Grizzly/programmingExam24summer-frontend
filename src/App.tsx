@@ -11,6 +11,7 @@ import ResultTable from "./components/ResultTable";
 import DisciplineTable from "./components/DisciplineTable";
 import DisciplinesForm from "./components/DisciplinesForm";
 import ResultsForm from "./components/ResultsForm";
+import Login from "./security/Login";
 
 export default function App() {
     const [selectedView, setSelectedView] = useState<string>("welcome");
@@ -88,13 +89,14 @@ export default function App() {
               <div className="exercise-style">
                 {selectedView == "welcome" ? <><p>Welcome!</p></>: null}
                 {selectedView == "athletes" ? <AthleteGrid handleDelete={handleDelete} handleUpdate={handleUpdate} calcAgeGroup={calcAgeGroup} handleSelectAthlete={handleSelectAthlete} calcAge={calcAge}/> : null}
-                {selectedView == "athletePage" ? <AthletePage athlete={selectedAthlete} calcAge={calcAge} calcAgeGroup={calcAgeGroup} setSelectedView={setSelectedView}/> : null}
+                {selectedView == "athletePage" ? <AthletePage athlete={selectedAthlete} calcAge={calcAge} calcAgeGroup={calcAgeGroup} setSelectedView={setSelectedView} handleDelete={handleDelete} handleUpdate={handleUpdate}/> : null}
                 {selectedView == "athletesForm" ? <AthleteForm athlete={entityToUpdate} setSelectedView={setSelectedView} setEntityToUpdate={setEntityToUpdate}/> : null}
                 {selectedView == "results" ? <ResultTable handleDelete={handleDelete} handleUpdate={handleUpdate}/> : null}
                 {selectedView == "resultsForm" ? <ResultsForm result={entityToUpdate} setSelectedView={setSelectedView} setEntityToUpdate={setEntityToUpdate} /> : null}
                 {selectedView == "disciplines" ? <DisciplineTable handleDelete={handleDelete} handleUpdate={handleUpdate}/> : null}
                 {selectedView == "disciplinesForm" ? <DisciplinesForm discipline={entityToUpdate} setSelectedView={setSelectedView} setEntityToUpdate={setEntityToUpdate} /> : null}
                 {selectedView == "confirmDelete" ? <ConfirmDelete entity={entityToDelete} confirmDeleteEntity={confirmDeleteEntity} handleCancelDelete={handleCancelDelete}/> : null}
+                {selectedView == "login" ? <Login/> : null}
               </div>
             </div>
           </div>
