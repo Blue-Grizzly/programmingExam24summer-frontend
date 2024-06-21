@@ -12,6 +12,7 @@ import DisciplineTable from "./components/DisciplineTable";
 import DisciplinesForm from "./components/DisciplinesForm";
 import ResultsForm from "./components/ResultsForm";
 import Login from "./security/Login";
+import Logout from "./security/Logout";
 
 export default function App() {
     const [selectedView, setSelectedView] = useState<string>("welcome");
@@ -88,15 +89,16 @@ export default function App() {
               </div>
               <div className="exercise-style">
                 {selectedView == "welcome" ? <><p>Welcome!</p></>: null}
-                {selectedView == "athletes" ? <AthleteGrid handleDelete={handleDelete} handleUpdate={handleUpdate} calcAgeGroup={calcAgeGroup} handleSelectAthlete={handleSelectAthlete} calcAge={calcAge}/> : null}
-                {selectedView == "athletePage" ? <AthletePage athlete={selectedAthlete} calcAge={calcAge} calcAgeGroup={calcAgeGroup} setSelectedView={setSelectedView} handleDelete={handleDelete} handleUpdate={handleUpdate}/> : null}
+                {selectedView == "athletes" ? <AthleteGrid handleDelete={handleDelete} handleUpdate={handleUpdate} calcAgeGroup={calcAgeGroup} handleSelectAthlete={handleSelectAthlete} calcAge={calcAge} setEntityToUpdate={setEntityToUpdate}/> : null}
+                {selectedView == "athletePage" ? <AthletePage athlete={selectedAthlete} calcAge={calcAge} calcAgeGroup={calcAgeGroup} setSelectedView={setSelectedView} handleDelete={handleDelete} handleUpdate={handleUpdate} setEntityToUpdate={setEntityToUpdate}/> : null}
                 {selectedView == "athletesForm" ? <AthleteForm athlete={entityToUpdate} setSelectedView={setSelectedView} setEntityToUpdate={setEntityToUpdate}/> : null}
-                {selectedView == "results" ? <ResultTable handleDelete={handleDelete} handleUpdate={handleUpdate}/> : null}
+                {selectedView == "results" ? <ResultTable handleDelete={handleDelete} handleUpdate={handleUpdate} setEntityToUpdate={setEntityToUpdate} calcAgeGroup={calcAgeGroup}/> : null}
                 {selectedView == "resultsForm" ? <ResultsForm result={entityToUpdate} setSelectedView={setSelectedView} setEntityToUpdate={setEntityToUpdate} /> : null}
-                {selectedView == "disciplines" ? <DisciplineTable handleDelete={handleDelete} handleUpdate={handleUpdate}/> : null}
+                {selectedView == "disciplines" ? <DisciplineTable handleDelete={handleDelete} handleUpdate={handleUpdate} setEntityToUpdate={setEntityToUpdate}/> : null}
                 {selectedView == "disciplinesForm" ? <DisciplinesForm discipline={entityToUpdate} setSelectedView={setSelectedView} setEntityToUpdate={setEntityToUpdate} /> : null}
                 {selectedView == "confirmDelete" ? <ConfirmDelete entity={entityToDelete} confirmDeleteEntity={confirmDeleteEntity} handleCancelDelete={handleCancelDelete}/> : null}
-                {selectedView == "login" ? <Login/> : null}
+                {selectedView == "login" ? <Login setSelectedView={setSelectedView}/> : null}
+                {selectedView == "logout" ? <Logout setSelectedView={setSelectedView}/> : null}
               </div>
             </div>
           </div>

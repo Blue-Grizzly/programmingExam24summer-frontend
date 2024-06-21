@@ -6,9 +6,10 @@ import discipline from "../models/discipline";
 type DisciplineTableProps = {
     handleUpdate: (entity: Object, type:string) => void;
     handleDelete: (entity: any, entityType:string) => void;
+    setEntityToUpdate: (entity: Object) => void;
 }
 
-export default function DisciplineTable({handleUpdate, handleDelete}: DisciplineTableProps){
+export default function DisciplineTable({handleUpdate, handleDelete, setEntityToUpdate}: DisciplineTableProps){
     const [disciplinesLocal, setDisciplinesLocal] = useState<discipline[]>([]);
     const [loading, setLoading] = useState(true);
     const auth = useAuth();
@@ -20,6 +21,7 @@ export default function DisciplineTable({handleUpdate, handleDelete}: Discipline
 
   useEffect(() => {
     fetchDisciplines();
+    setEntityToUpdate({});
   }, []);
 
 
@@ -34,8 +36,8 @@ export default function DisciplineTable({handleUpdate, handleDelete}: Discipline
             <tr>
                 <th>Name</th>
                 <th>Scoring</th>
-                <th>Update</th>
-                <th>Delete</th>
+                {auth.isLoggedInAs(["ADMIN"]) && <th>Update</th>}
+                {auth.isLoggedInAs(["ADMIN"]) && <th>Delete</th>}
             </tr>
             
             </thead>
@@ -47,12 +49,16 @@ export default function DisciplineTable({handleUpdate, handleDelete}: Discipline
                 <tr key={discipline.id}>
                     <td>{discipline.name}</td>
                     <td>{discipline.resultType}</td>
+                    {auth.isLoggedInAs(["ADMIN"]) && (
                     <td>
                         <button onClick={() => handleUpdate(discipline, "disciplines")}>Update</button>
                     </td>
+                    )}  
+                    {auth.isLoggedInAs(["ADMIN"]) && ( 
                     <td>
                         <button onClick={() => handleDelete(discipline, "disciplines")}>Delete</button>
                     </td>
+                    )}
                 </tr>
             ))}
             </tbody>

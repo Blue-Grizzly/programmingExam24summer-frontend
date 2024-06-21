@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import athlete from "../models/athlete";
 import RestService from "../services/RestService";
+import { useAuth } from "../security/AuthProvider";
 
 type AthletePageProps = {
     athlete: athlete;
@@ -9,11 +10,12 @@ type AthletePageProps = {
     setSelectedView: (selected: string) => void;
     handleUpdate: (entity: Object, type:string) => void;
     handleDelete: (entity: any, entityType:string) => void;
-
+    setEntityToUpdate: (entity: object) => void;
 }
 
-export default function AthletePage({athlete, calcAge, calcAgeGroup, setSelectedView, handleDelete, handleUpdate}: AthletePageProps){
+export default function AthletePage({athlete, calcAge, calcAgeGroup, setSelectedView, handleDelete, handleUpdate, setEntityToUpdate}: AthletePageProps){
     const [resultsLocal, setResultsLocal] = useState([]);
+    const auth = useAuth();
 
     const getResults = async () => {
         const res = await RestService.getAll("results");
@@ -22,6 +24,7 @@ export default function AthletePage({athlete, calcAge, calcAgeGroup, setSelected
     }
     useEffect(() => {
         getResults();
+        setEntityToUpdate({});
     }, []);
 
 
@@ -53,11 +56,13 @@ export default function AthletePage({athlete, calcAge, calcAgeGroup, setSelected
                     </tbody>
                 </table>
             }
+            {auth.isLoggedInAs(["ADMIN"]) && (
             <div>
                 <button onClick={()=> handleUpdate(athlete, "athletes")}>Update</button>
                 <button onClick={()=> handleDelete(athlete, "athletes")}>Delete</button>
-                <button onClick={()=> setSelectedView("athletes")}>Back to athletes</button>
-            </div>    
+            </div>
+            )}
+                <button onClick={()=> setSelectedView("athletes")}>Back to athletes</button>  
         </div>
     )
 }

@@ -57,9 +57,11 @@ export default function AthleteForm({athlete, setEntityToUpdate, setSelectedView
 
     useEffect(() => {
         fetchDisciplines();
+        if(athlete.disciplines){
         setTimeout(() => {
           athlete.disciplines.forEach((discipline) => { document.getElementById(discipline.name).checked = formData.disciplines.includes(discipline)})
         }, 100);      // please dont look at my shame
+        }
     }, []);
   
 

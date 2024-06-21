@@ -1,6 +1,5 @@
 
 import { makeOptions, handleHttpErrors } from "./fetchUtils";
-const LOGIN_URL = "localhost:8080" + "/api/auth/login";
 
 export type User = { username: string; password: string; roles?: string[] };
 
@@ -19,7 +18,7 @@ const authProvider = {
   isAuthenticated: false,
   signIn(user_: LoginRequest): Promise<LoginResponse> {
     const options = makeOptions("POST", user_);
-    return fetch(LOGIN_URL, options).then(handleHttpErrors);
+    return fetch("http://localhost:8080/api/auth/login", options).then(handleHttpErrors);
   },
 };
 

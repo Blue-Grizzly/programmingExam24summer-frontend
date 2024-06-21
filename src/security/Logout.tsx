@@ -1,9 +1,12 @@
 import { useAuth } from "./AuthProvider";
-import { Navigate } from "react-router-dom";
 
 
-export default function Logout() {
+export default function Logout({setSelectedView}: {setSelectedView: (view: string) => void}){
   const auth = useAuth();
   auth.signOut()
-  return <Navigate to="/" replace= {true} />;
+  setSelectedView("login")
+  return (
+    <div>
+    </div>
+    );
 }
