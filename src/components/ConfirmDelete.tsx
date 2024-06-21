@@ -5,6 +5,7 @@ type ConfirmDeleteProps = {
 }
 
 export default function ConfirmDelete({confirmDeleteEntity, entity, handleCancelDelete}: ConfirmDeleteProps){
+    
     return(
         <div>
             <h1>Confirm delete</h1>

@@ -17,11 +17,11 @@ class RestService {
 
   public async create(entity: string, data: any) {
     const method = data.id ? 'PUT' : 'POST';
-    return await fetch(`${this.url}/${data.id? entity+"/"+data.id : entity}`, makeOptions(method, data, false)).then(handleHttpErrors);
+    return await fetch(`${this.url}/${data.id? entity+"/"+data.id : entity}`, makeOptions(method, data, true)).then(handleHttpErrors);
   }
 
   public async delete(entity: string, id: number) {
-    return await fetch(`${this.url}/${entity}/${id}`, makeOptions('DELETE', null, false)).then((res) => res.ok);
+    return await fetch(`${this.url}/${entity}/${id}`, makeOptions('DELETE', null, true)).then((res) => res.ok);
   }
 
 }

@@ -61,8 +61,10 @@ export default function App() {
       setSelectedView("athletePage");    
     }
 
-    const confirmDeleteEntity = async () => {
-      const res = await RestService.delete(entityType, entityToDelete.id);
+    const confirmDeleteEntity = async (entity) => {
+      console.log(entityType, entity.id);
+      
+      const res = await RestService.delete(entityType, entity.id);
       if(res){
         alert("Sucess!")
         setSelectedView(entityType);
